@@ -1,6 +1,6 @@
 import Calculator from "./components/Calculator/Calculator";
 import { useState } from "react";
-import Total from "./components/Total";
+import Total from "./features/Total";
 
 function App() {
   const [total, setTotal] = useState<number | null>(0);

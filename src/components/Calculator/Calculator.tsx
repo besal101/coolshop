@@ -7,26 +7,31 @@ interface ICalculatorProps {
 }
 
 const Calculator: React.FC<ICalculatorProps> = ({ onTotalChange }) => {
+  // State to store the rows
   const [rows, setRows] = useState([{ sign: "+", value: "", enabled: true }]);
 
+  // Function to handle the sign change
   const handleSignChange = (index: number, newSign: string): void => {
     const newRows = [...rows];
     newRows[index].sign = newSign;
     setRows(newRows);
   };
 
+  // Function to handle the value change
   const handleValueChange = (index: number, newValue: string): void => {
     const newRows = [...rows];
     newRows[index].value = newValue;
     setRows(newRows);
   };
 
+  // Function to handle the row toggle
   const handleRowToggle = (index: number): void => {
     const newRows = [...rows];
     newRows[index].enabled = !newRows[index].enabled;
     setRows(newRows);
   };
 
+  // Function to calculate the total
   const calculateTotal = (): number => {
     let total = 0;
     for (const row of rows) {
@@ -37,16 +42,23 @@ const Calculator: React.FC<ICalculatorProps> = ({ onTotalChange }) => {
     return total;
   };
 
+  // Function to add a new row
   const addRow = (): void => {
     const newRows = [...rows, { sign: "+", value: "", enabled: true }];
     setRows(newRows);
   };
 
+  // Function to remove a row
   const removeRow = (index: number): void => {
     const newRows = [...rows];
     newRows.splice(index, 1);
     setRows(newRows);
   };
+
+  /**
+   * Function to handle the total change
+   * useEffect to calculate the total when the rows change
+   */
 
   useEffect(() => {
     const total = calculateTotal();
