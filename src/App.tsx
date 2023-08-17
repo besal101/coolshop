@@ -1,24 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Calculator from "./components/Calculator/Calculator";
+import { useState } from "react";
+import Total from "./components/Total";
 
 function App() {
+  const [total, setTotal] = useState<number | null>(0);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex pt-20 items-center h-screen bg-gray-100 flex-col">
+      {/* Component To Display Total */}
+      <Total total={total} />
+
+      <div className="pt-24 w-96">
+        {/* Component To Display Calculator */}
+        <Calculator onTotalChange={(newTotal) => setTotal(newTotal)} />
+      </div>
     </div>
   );
 }
